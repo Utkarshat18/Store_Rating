@@ -1,19 +1,50 @@
 
 import React,{useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./Register.css";
 
 const Register = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [address, setAddress] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [registerinfo,setregisterinfo] = useState({
+        name:"",
+        email:"",
+        address:"",
+        password:""
+    });
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    // Replace this with API call to backend
-    alert(`Name: ${name}\nEmail: ${email}\nAddress: ${address}\nPassword: ${password}`);
+  const handleChange= (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    const copyregisterinfo={...registerinfo};
+    copyregisterinfo[name]=value;
+    setregisterinfo(copyregisterinfo);
   };
+
+  const handleRegister = async(e) => {
+    e.preventDefault();
+    const { name, email, address, password } = registerinfo;
+    if(!name || !email || !address || !password){
+        alert("Please fill all the fields");
+        return;
+    }
+    try{
+        const url="http://localhost:8000/auth/signup";
+        const response=await fetch(url,{method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(registerinfo)
+        });
+
+        const result=await response.json();
+        const {success,message}=result;
+        if(success){
+            navigate("/login");
+        }
+        console.log(result);
+
+    }catch(err){
+
+    }
+  }
 
   return (
     <div className="register-container">
@@ -27,9 +58,10 @@ const Register = () => {
             <label>Name</label>
             <input
               type="text"
+              name="name"
+              value={registerinfo.name}
               placeholder="Enter your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleChange}
               required
             />
           </div>
@@ -38,9 +70,10 @@ const Register = () => {
             <label>Email</label>
             <input
               type="email"
+              name="email"
+              value={registerinfo.email}
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               required
             />
           </div>
@@ -49,9 +82,10 @@ const Register = () => {
             <label>Address</label>
             <input
               type="text"
+              name="address"
+              value={registerinfo.address}
               placeholder="Enter your address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={handleChange}
               required
             />
           </div>
@@ -60,9 +94,10 @@ const Register = () => {
             <label>Password</label>
             <input
               type="password"
+              name="password"
+              value={registerinfo.password}
               placeholder="Enter a password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
               required
             />
           </div>
