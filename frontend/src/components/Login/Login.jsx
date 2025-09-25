@@ -1,14 +1,47 @@
 import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [logininfo,setlogininfo]=useState({
+    email:"",
+    password:""
+  })
 
-  const handleLogin = (e) => {
+  const handleChange=(e)=>{
+    const { name, value } = e.target;
+    console.log(name, value);
+    const copylogininfo={...logininfo};
+    copylogininfo[name]=value;
+    setlogininfo(copylogininfo);
+  }
+
+  const handleLogin = async(e) => {
     e.preventDefault();
-    //alert(`Email: ${email}\nPassword: ${password}`);
+    const {email,password}=logininfo;
+    if(!email || !password){
+        alert("Please fill all the fields");
+        return;
+    }
+    try{
+      const url="http://localhost:8000/auth/login";
+      const response=await fetch(url,
+        {method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(logininfo)
+        }
+      )
+      const result=await response.json();
+        const {success,message}=result;
+        if(success){
+            navigate("/");
+        }
+        console.log(result);
+
+    }catch(err){}
+    
   };
 
   return (
@@ -21,8 +54,9 @@ const Login = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={logininfo.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -31,9 +65,10 @@ const Login = () => {
             <label>Password</label>
             <input
               type="password"
+              name="password"
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={logininfo.password}
+              onChange={handleChange}
               required
             />
           </div>
