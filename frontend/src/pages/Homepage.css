@@ -1,0 +1,16 @@
+.homepage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homepage-content{
+    padding:100px;
+    
+}
+
+p{
+    padding:5px;
+    margin-top: 30px;
+}
