@@ -45,6 +45,12 @@
   box-shadow: 0 0 5px rgba(42,91,215,0.3);
 }
 
+select{
+  padding:2px;
+   border: 1px solid #ccc;
+  font-size: large;
+}
+
 .btn-register {
   width: 100%;
   padding: 12px;

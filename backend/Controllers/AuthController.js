@@ -4,13 +4,13 @@ const jwt=require('jsonwebtoken');
 
 const signup=async(req,res)=>{
     try{
-        const {name,email,address,password}=req.body;
+        const {name,role,email,address,password}=req.body;
         const user=await UserModel.findOne({email});
         if(user){
             return res.status(409)
             .json({message:"message:User already exists",success: false});
         }
-        const userModel=new UserModel({name,email,address,password});
+        const userModel=new UserModel({name,role,email,address,password});
         userModel.password=await bcrypt.hash(password,10);
         await userModel.save();
         res.status(201)
@@ -38,8 +38,9 @@ const login=async(req,res)=>{
             email:user.email,id:user._id},
             process.env.JWT_SECRET,{expiresIn:"2h"});
 
+        
         res.status(200)
-        .json({message:"Login successful",success:true,token,email,name:user.name});
+        .json({message:"Login successful",success:true,token,email,name:user.name,role:user.role});
 
     }catch(err){
         res.status(500)

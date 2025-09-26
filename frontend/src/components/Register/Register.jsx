@@ -7,6 +7,7 @@ const Register = () => {
     const navigate = useNavigate();
     const [registerinfo,setregisterinfo] = useState({
         name:"",
+        role:"user",
         email:"",
         address:"",
         password:""
@@ -22,8 +23,8 @@ const Register = () => {
 
   const handleRegister = async(e) => {
     e.preventDefault();
-    const { name, email, address, password } = registerinfo;
-    if(!name || !email || !address || !password){
+    const { name,role, email, address, password } = registerinfo;
+    if(!name || !role || !email || !address || !password){
         alert("Please fill all the fields");
         return;
     }
@@ -64,6 +65,12 @@ const Register = () => {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="input-group">
+            <label>Role</label>
+            <select name="role" value={registerinfo.role} onChange={handleChange} required>
+          <option value="user">user</option>
+          </select>
           </div>
 
           <div className="input-group">
