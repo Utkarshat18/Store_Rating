@@ -7,6 +7,8 @@ import Homepage from "./pages/Homepage";
 import Adminhomepage from "./pages/Adminpage/adminhomepage";
 import Userdashboard from "./pages/Userdashboard/userdashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Addstoreform from "./components/Addstoreform/Addstoreform";
+// import Addstoreform from "./components/Addstoreform/Addstoreform";
 function App() {
   return (
     <Router>
@@ -19,6 +21,10 @@ function App() {
           <Route path="/admin" element={ 
             <ProtectedRoute role="admin">
             <Adminhomepage />
+            </ProtectedRoute>} />
+          <Route path="/addstore" element={
+            <ProtectedRoute role="admin">
+            <Addstoreform />
             </ProtectedRoute>} />
           <Route path="/user" element={
             <ProtectedRoute role="user">

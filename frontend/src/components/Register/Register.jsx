@@ -41,7 +41,6 @@ const Register = () => {
             navigate("/login");
         }
         console.log(result);
-
     }catch(err){
 
     }
