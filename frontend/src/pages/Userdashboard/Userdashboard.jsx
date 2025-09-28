@@ -31,6 +31,14 @@ const Userdashboard = () => {
               <h3 className="store-name">{store.name}</h3>
               <p className="store-description">{store.description}</p>
               <p className="store-location">📍 {store.location}</p>
+              <div className="rating-display">
+                <p className="average-rating">
+                  ⭐ Average Rating: {store.averageRating ? store.averageRating.toFixed(1) : 'No ratings yet'}
+                </p>
+                <p className="total-ratings">
+                  ({store.rating ? store.rating.length : 0} rating{store.rating && store.rating.length !== 1 ? 's' : ''})
+                </p>
+              </div>
 
               <form
                 className="rating-form"
