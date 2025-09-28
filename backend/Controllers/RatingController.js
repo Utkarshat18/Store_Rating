@@ -4,8 +4,9 @@ const addRating=async(req ,res)=>{
     try{
         const {rating}=req.body;
         
-        // Validate rating
-        if(!rating || rating < 1 || rating > 5){
+        // Convert rating to number and validate
+        const ratingNum = parseInt(rating);
+        if(!rating || isNaN(ratingNum) || ratingNum < 1 || ratingNum > 5){
             return res.status(400).json({message:"Rating must be between 1 and 5",success:false});
         }
         
@@ -17,12 +18,12 @@ const addRating=async(req ,res)=>{
         }
         
         // Check if user already rated this store
-        const existingRating = store.rating.find(r => r.user.toString() === req.user.id);
+        const existingRating = store.rating.find(r => r.user.toString() === req.user._id.toString());
         if(existingRating){
             return res.status(400).json({message:"You have already rated this store",success:false});
         }
         
-        store.rating.push({ user: req.user.id, rating });
+        store.rating.push({ user: req.user._id, rating: ratingNum });
         
         // Calculate average rating
         const totalRating = store.rating.reduce((sum, r) => sum + r.rating, 0);
