@@ -1,6 +1,9 @@
 #commands to run the program
+
 backend- npm start
+
 frontend- npm run dev
+
 Details :-
 📝admin-
 email:- admin@gmail.com
