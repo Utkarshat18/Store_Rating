@@ -21,4 +21,21 @@ const addStore=async(req , res)=>{
     }
 }
 
-module.exports={addStore};
+const getallstores=async(req,res)=>{
+    try{
+        console.log("Get all stores called");
+        const stores=await StoreModel.find().populate("rating.user", "name email");
+        console.log(stores);
+        if(!stores)
+        {
+            res.json({message:"NO rating found"});
+        }
+        res.json({message:"All stores fetched successfully",stores,success:true});
+
+    }catch(err){
+        res.status(500)
+        .json({message:"Internal server error",err,success:false});
+    }
+}
+
+module.exports={addStore,getallstores};
