@@ -1,0 +1,94 @@
+/* Dashboard container */
+.dashboard-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.no-stores {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+/* Store list */
+.store-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Store card */
+.store-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-4px);
+}
+
+.store-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #34495e;
+  margin-bottom: 8px;
+}
+
+.store-description {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.store-location {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Rating form */
+.rating-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.rating-select {
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.rating-select:focus {
+  border-color: #3498db;
+}
+
+.rating-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.rating-btn:hover {
+  background: #2980b9;
+}
