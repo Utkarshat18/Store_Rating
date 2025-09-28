@@ -4,6 +4,7 @@ const bodyParser=require('body-parser');//Middleware to parse incoming request b
 const cors=require('cors');//CORS = Cross-Origin Resource Sharing Prevents browsers from blocking requests from different origins
 const AuthRouter=require('./Routes/AuthRouter');
 const StoreRouter=require('./Routes/StoreRouter');
+const RatingRouter=require('./Routes/RatingRouter');
 require('dotenv').config();
 require('./Models/db');
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/auth',AuthRouter);
 app.use('/store',StoreRouter);
+app.use('/rating',RatingRouter);
 
 app.listen(PORT,()=>{
     console.log(`Server running on PORT ${PORT}`);
