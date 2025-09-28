@@ -5,8 +5,8 @@ password:- admin12345
 
 📝user-
 user can do the simple registration and can do the login 
-Or\n
-email:- testuser@gmail.com
+Or
+email:- test@gmail.com
 password:- test@123
 
 🛒 Store-Rating Application
