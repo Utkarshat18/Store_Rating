@@ -1,10 +1,13 @@
 Details :-
-for admin-
+📝admin-
 email:- admin@gmail.com
 password:- admin12345
 
-for user-
+📝user-
 user can do the simple registration and can do the login 
+Or\n
+email:- testuser@gmail.com
+password:- test@123
 
 🛒 Store-Rating Application
 
